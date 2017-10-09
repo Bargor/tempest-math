@@ -12,13 +12,17 @@ set(VERSION_MINOR   0   CACHE STRING "Project minor version number.")
 set(VERSION_PATCH   1   CACHE STRING "Project patch version number.")
 
 #Get build number
-execute_process(COMMAND git rev-parse --short HEAD OUTPUT_VARIABLE VERSION_REVISION)
+execute_process(COMMAND ${CMAKE_SOURCE_DIR}/git rev-parse --short HEAD OUTPUT_VARIABLE VERSION_REVISION)
+
+message(${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}:${VERSION_REVISION})
+
+set(INCLUDE_PATHS ${CMAKE_SOURCE_DIR}/src)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_subdirectory (src)
-if (BUILD_TESTS)
-	message("Building tests")
-	add_subdirectory (test)
-endif(BUILD_TESTS)
+option(BUILD_PERF_TESTS "Builds unit and performance tests." OFF)
+
+add_subdirectory(src)
+add_subdirectory(test)
+
