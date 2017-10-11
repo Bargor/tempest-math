@@ -32,6 +32,6 @@ if(UNIX)
 	target_link_libraries (math_test ${CMAKE_THREAD_LIBS_INIT} -lstdc++fs)
 endif(UNIX)
 if(WIN32)
-	target_link_libraries(tempest_test debug ${LIBRARY_OUTPUT_PATH}/Debug/gmock.lib
+	target_link_libraries(math_test debug ${LIBRARY_OUTPUT_PATH}/Debug/gmock.lib
 		optimized ${LIBRARY_OUTPUT_PATH}/Release/gmock.lib)
 endif(WIN32)
