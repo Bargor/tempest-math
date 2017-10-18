@@ -25,4 +25,3 @@ option(BUILD_PERF_TESTS "Builds unit and performance tests." OFF)
 
 add_subdirectory(src)
 add_subdirectory(test)
-

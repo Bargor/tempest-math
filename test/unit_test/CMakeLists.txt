@@ -15,6 +15,8 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/lib/googletest ${LIBRARY_OUTPUT_PATH})
 
 link_directories(${LIBRARY_OUTPUT_PATH})
 
+include (GatherSources)
+
 #Find test files
 #TODO Make it better
 file(GLOB_RECURSE TEST_CODE "*_test.cpp")
