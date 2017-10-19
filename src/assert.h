@@ -1,8 +1,8 @@
-# This file is part of Tempest-math project
-# Author: Karol Kontny
+// This file is part of Tempest-math project
+// Author: Karol Kontny
 
 #pragma once
-#incnlude <cstdio>
+#include <cstdio>
 
 namespace tst 
 {

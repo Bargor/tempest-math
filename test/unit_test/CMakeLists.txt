@@ -15,7 +15,7 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/lib/googletest ${LIBRARY_OUTPUT_PATH})
 
 link_directories(${LIBRARY_OUTPUT_PATH})
 
-include (GatherSources)
+include(${CMAKE_SOURCE_DIR}/GatherSources.cmake)
 
 #Find test files
 #TODO Make it better
@@ -26,12 +26,12 @@ source_group("Tests" FILES ${TEST_CODE})
 set(TEST_RUNNER test_runner.cpp)
 set(TEST_SRCS ${TEST_RUNNER} ${TEST_CODE})
 
-add_executable (math_test ${TEST_SRCS})
+add_executable (math_test ${TEST_SRCS} ${TEMPEST_CODE})
 
 if(UNIX)
 	FIND_PACKAGE(Threads)
 	target_link_libraries(math_test ${LIBRARY_OUTPUT_PATH}/libgmock.a)
-	target_link_libraries (math_test ${CMAKE_THREAD_LIBS_INIT} -lstdc++fs)
+	target_link_libraries(math_test ${CMAKE_THREAD_LIBS_INIT} -lstdc++fs)
 endif(UNIX)
 if(WIN32)
 	target_link_libraries(math_test debug ${LIBRARY_OUTPUT_PATH}/Debug/gmock.lib
