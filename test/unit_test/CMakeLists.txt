@@ -28,6 +28,12 @@ set(TEST_SRCS ${TEST_RUNNER} ${TEST_CODE})
 
 add_executable (math_test ${TEST_SRCS} ${TEMPEST_CODE})
 
+target_compile_definitions(math_test PUBLIC "$<$<CONFIG:DEBUG>:${DEBUG_COMPILE_DEFINITIONS}>")
+target_compile_definitions(math_test PUBLIC "$<$<CONFIG:RELEASE>:${RELEASE_COMPILE_DEFINITIONS}>")
+
+target_compile_options(math_test PUBLIC "$<$<CONFIG:DEBUG>:${DEBUG_COMPILE_OPTIONS}>")
+target_compile_options(math_test PUBLIC "$<$<CONFIG:RELEASE>:${RELEASE_COMPILE_OPTIONS}>")
+
 if(UNIX)
 	FIND_PACKAGE(Threads)
 	target_link_libraries(math_test ${LIBRARY_OUTPUT_PATH}/libgmock.a)
