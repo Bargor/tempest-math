@@ -31,9 +31,10 @@ matrix:
 
 # Build steps
 script:
-  - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
-  - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
-  - gcc -v && g++ -v && cmake --version
-  - mkdir build
-  - cd build
+- sudo ln -s /usr/bin/gcc-7 /usr/local/bin/gcc
+- sudo ln -s /usr/bin/g++-7 /usr/local/bin/g++
+- gcc -v && g++ -v && cmake --version
+
+- mkdir build
+- cd build
 - cmake .. && make
