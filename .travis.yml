@@ -44,4 +44,4 @@ script:
 - mkdir build
 - cd build
 - cmake .. && make
-- ./bin/exe/math_test
+- ctest

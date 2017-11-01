@@ -26,7 +26,10 @@ source_group("Tests" FILES ${TEST_CODE})
 set(TEST_RUNNER test_runner.cpp)
 set(TEST_SRCS ${TEST_RUNNER} ${TEST_CODE})
 
+enable_testing()
+
 add_executable (math_test ${TEST_SRCS} ${TEMPEST_CODE})
+add_test(NAME unit_test COMMAND math_test)
 
 target_compile_definitions(math_test PUBLIC "$<$<CONFIG:DEBUG>:${DEBUG_COMPILE_DEFINITIONS}>")
 target_compile_definitions(math_test PUBLIC "$<$<CONFIG:RELEASE>:${RELEASE_COMPILE_DEFINITIONS}>")
