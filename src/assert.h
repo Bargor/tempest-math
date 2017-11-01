@@ -18,7 +18,7 @@ namespace tst
 #ifdef NDEBUG
 #define assert(EXPRESSION) ((void)0)
 #else
-#define assert(EXPRESSION) ((EXPRESSION) ? (void)0 : _assert(#EXPRESSION, __FILE__, __LINE__))
+#define assert(EXPRESSION) ((EXPRESSION) ? (void)0 : tst::_assert(#EXPRESSION, __FILE__, __LINE__))
 #endif
 
 }
