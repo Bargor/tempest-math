@@ -46,6 +46,6 @@ if(UNIX)
 	target_link_libraries(math_test ${CMAKE_THREAD_LIBS_INIT})
 endif(UNIX)
 if(WIN32)
-	target_link_libraries(math_test debug ${LIBRARY_OUTPUT_PATH}/Debug/gmock.lib
+	target_link_libraries(math_test debug ${LIBRARY_OUTPUT_PATH}/Debug/gmockd.lib
 		optimized ${LIBRARY_OUTPUT_PATH}/Release/gmock.lib)
 endif(WIN32)
