@@ -38,6 +38,8 @@ target_compile_definitions(math_test PUBLIC "$<$<CONFIG:RELEASE>:${RELEASE_COMPI
 target_compile_options(math_test PUBLIC "$<$<CONFIG:DEBUG>:${DEBUG_COMPILE_OPTIONS}>")
 target_compile_options(math_test PUBLIC "$<$<CONFIG:RELEASE>:${RELEASE_COMPILE_OPTIONS}>")
 
+add_dependencies(tempest_test gmock)
+
 if(UNIX)
 	FIND_PACKAGE(Threads)
 	target_link_libraries(math_test ${LIBRARY_OUTPUT_PATH}/libgmock.a)
