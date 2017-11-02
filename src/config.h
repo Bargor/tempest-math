@@ -40,14 +40,14 @@
     #endif//_MSC_VER
 
 #elif defined(__GNUC__)
-    #ifdef (__GNUC__ == 7)
+    #if __GNUC__ == 7
         #define TST_COMPILER (TST_COMPILER_GCC7)
-    #elif (__GNUC__ >= 8)
+    #elif __GNUC__ >= 8
         #define TST_COMPILER (TST_COMPILER_GCC8)
     #endif  
 
 #elif defined(__clang__)
-    #ifdef __clang_major__ == 4 && __clang_minor__ == 0
+    #if __clang_major__ == 4 && __clang_minor__ == 0
         #define TST_COMPILER TST_COMPILER_CLANG40
     #elif __clang_major__ == 4 && __clang_minor__ == 1
         #define TST_COMPILER TST_COMPILER_CLANG41
