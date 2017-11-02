@@ -43,7 +43,7 @@ add_dependencies(math_test gmock)
 if(UNIX)
 	FIND_PACKAGE(Threads)
 	target_link_libraries(math_test ${LIBRARY_OUTPUT_PATH}/libgmock.a)
-	target_link_libraries(math_test ${CMAKE_THREAD_LIBS_INIT} -lstdc++fs)
+	target_link_libraries(math_test ${CMAKE_THREAD_LIBS_INIT})
 endif(UNIX)
 if(WIN32)
 	target_link_libraries(math_test debug ${LIBRARY_OUTPUT_PATH}/Debug/gmock.lib
