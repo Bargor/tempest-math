@@ -43,5 +43,6 @@ script:
 
 - mkdir build
 - cd build
-- cmake .. && make
-- ctest
+- cmake .. 
+- make
+

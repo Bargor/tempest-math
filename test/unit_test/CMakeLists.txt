@@ -3,6 +3,9 @@
 
 project (Tempest-math CXX)
 
+include(CTest)
+enable_testing()
+
 set(PROJECT_BINARY_DIR ${CMAKE_BINARY_DIR}/bin)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/exe)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/tests_libs)
@@ -25,8 +28,6 @@ source_group("Tests" FILES ${TEST_CODE})
 
 set(TEST_RUNNER test_runner.cpp)
 set(TEST_SRCS ${TEST_RUNNER} ${TEST_CODE})
-
-enable_testing()
 
 add_executable (math_test ${TEST_SRCS} ${TEMPEST_CODE})
 add_test(NAME unit_test COMMAND math_test)
