@@ -157,3 +157,45 @@ typedef __m256d		tst_dvec4;
 typedef __m256i		tst_i64vec4;
 typedef __m256i		tst_u64vec4;
 #endif
+
+
+#include <cstdint>
+
+namespace tst {
+
+    template<typename T>
+    struct simd_type {
+        using type = T;
+    };
+
+    template<>
+    struct simd_type<float> {
+        using type = tst_vec4;
+    };
+
+    template<>
+    struct simd_type<std::int32_t> {
+        using type = tst_ivec4;
+    };
+
+    template<>
+    struct simd_type<std::uint32_t> {
+        using type = tst_uvec4;
+    };
+
+    template<>
+    struct simd_type<double> {
+        using type = tst_dvec4;
+    };
+
+    template<>
+    struct simd_type<std::int64_t> {
+        using type = tst_ivec4;
+    };
+
+    template<>
+    struct simd_type<std::uint64_t> {
+        using type = tst_uvec4;
+    };
+
+}

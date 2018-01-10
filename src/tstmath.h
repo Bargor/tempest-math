@@ -5,3 +5,4 @@
 
 #include "config.h"
 #include "assert.h"
+#include "vec4.h"
