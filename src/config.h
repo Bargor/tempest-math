@@ -22,7 +22,8 @@
 // Compiler 
 
 #define TST_COMPILER_VC	        0x00010000
-#define TST_COMPILER_VC15       0x00010001
+#define TST_COMPILER_VC14       0x00010001
+#define TST_COMPILER_VC15       0x00010002
 
 #define TST_COMPILER_GCC	    0x00020000
 #define TST_COMPILER_GCC7       0x00020001
@@ -37,6 +38,8 @@
 #ifdef _MSC_VER
     #if _MSC_VER >= 1910
         #define TST_COMPILER TST_COMPILER_VC15
+    #elif _MSC_VER == 1900
+        #define TST_COMPILER TST_COMPILER_VC14
     #endif//_MSC_VER
 
 #elif defined(__GNUC__)
@@ -62,15 +65,15 @@
 
 // Setup inlining
 
-#ifdef TST_COMPILER_VC 
+#ifdef TST_COMPILER & TST_COMPILER_VC
     #define TST_INLINE __forceinline
     #define TST_NEVER_INLINE __declspec((noinline))
     #define TST_CALL __vectorcall
-#elif defined(TST_COMPILER_GCC)
+#elif TST_COMPILER & TST_COMPILER_GCC
     #define TST_INLINE inline __attribute__((__always_inline__))
     #define TST_NEVER_INLINE __attribute__((__noinline__))
     #define TST_CALL __attribute__((fastcall)) //GCC probably don't have vectorcall
-#elif defined(TST_COMPILER_CLANG)
+#elif TST_COMPILER & TST_COMPILER_CLANG
     #define TST_INLINE inline __attribute__((__always_inline__))
     #define TST_NEVER_INLINE __attribute__((__noinline__))
     #define TST_CALL __vectorcall
@@ -92,6 +95,9 @@
 
 #define TST_ARCH_PURE   0x00000000
 #define TST_ARCH_X86    TST_X86_BIT
+#if defined(_M_X64) || defined(__x86_64__)
+    #define TST_ARCH_X64
+#endif
 #define TST_ARCH_SSE2   (TST_ARCH_X86 | TST_SSE2_BIT)
 #define TST_ARCH_SSE3   (TST_ARCH_SSE2 | TST_SSE3_BIT)
 #define TST_ARCH_SSSE3  (TST_ARCH_SSE3 | TST_SSSE3_BIT)
@@ -113,7 +119,7 @@
     #define TST_ARCH TST_ARCH_SSSE3
 #elif defined(__SSE3__)
     #define TST_ARCH TST_ARCH_SSE3
-#elif defined(__SSE2__) || defined(__x86_64__)
+#elif defined(__SSE2__) || defined(TST_ARCH_X64)
     #define TST_ARCH TST_ARCH_SSE2
 #elif defined(__i386__) 
     #define TST_ARCH (TST_ARCH_X86)
@@ -183,10 +189,16 @@ namespace tst {
         using type = tst_uvec4;
     };
 
+#ifdef TST_ARCH_AVX
+
     template<>
     struct simd_type<double> {
         using type = tst_dvec4;
     };
+
+#endif // TST_ARCH_AVX
+
+#ifdef TST_ARCH_AVX2
 
     template<>
     struct simd_type<std::int64_t> {
@@ -197,5 +209,7 @@ namespace tst {
     struct simd_type<std::uint64_t> {
         using type = tst_uvec4;
     };
+
+#endif // TST_ARCH_AVX2
 
 }
