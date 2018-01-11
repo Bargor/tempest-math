@@ -65,7 +65,7 @@
 
 // Setup inlining
 
-#ifdef TST_COMPILER & TST_COMPILER_VC
+#if TST_COMPILER & TST_COMPILER_VC
     #define TST_INLINE __forceinline
     #define TST_NEVER_INLINE __declspec((noinline))
     #define TST_CALL __vectorcall
@@ -189,7 +189,7 @@ namespace tst {
         using type = tst_uvec4;
     };
 
-#ifdef TST_ARCH_AVX
+#if TST_ARCH & TST_AVX_BIT
 
     template<>
     struct simd_type<double> {
@@ -198,7 +198,7 @@ namespace tst {
 
 #endif // TST_ARCH_AVX
 
-#ifdef TST_ARCH_AVX2
+#if TST_ARCH & TST_AVX2_BIT
 
     template<>
     struct simd_type<std::int64_t> {
