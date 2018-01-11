@@ -149,7 +149,7 @@
 #elif TST_COMPILER & TST_COMPILER_CLANG
 #define TST_INLINE inline __attribute__((__always_inline__))
 #define TST_NEVER_INLINE __attribute__((__noinline__))
-#define TST_CALL
+#define TST_CALL __attribute__((vectorcall))
 #else
 #define TST_INLINE inline
 #define TST_NEVER_INLINE
