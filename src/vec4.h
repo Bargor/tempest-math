@@ -8,7 +8,7 @@
 namespace tst {
 
     template<typename T>
-    class alignas(sizeof(simd_type<T>::type)) vec<4, T> {
+    class alignas(sizeof(typename simd_type<T>::type)) vec<4, T> {
     public:
 
         typedef T value_type;

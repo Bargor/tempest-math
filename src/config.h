@@ -63,25 +63,6 @@
     #define TST_COMPILER TST_COMPILER_UNKNOWN
 #endif
 
-// Setup inlining
-
-#if TST_COMPILER & TST_COMPILER_VC
-    #define TST_INLINE __forceinline
-    #define TST_NEVER_INLINE __declspec((noinline))
-    #define TST_CALL __vectorcall
-#elif TST_COMPILER & TST_COMPILER_GCC
-    #define TST_INLINE inline __attribute__((__always_inline__))
-    #define TST_NEVER_INLINE __attribute__((__noinline__))
-    #define TST_CALL __attribute__((fastcall)) //GCC probably don't have vectorcall
-#elif TST_COMPILER & TST_COMPILER_CLANG
-    #define TST_INLINE inline __attribute__((__always_inline__))
-    #define TST_NEVER_INLINE __attribute__((__noinline__))
-    #define TST_CALL __vectorcall
-#else
-    #define TST_INLINE inline
-    #define TST_NEVER_INLINE
-#endif
-
 // Detect instruction set
 #define TST_X86_BIT     0x00000001
 #define TST_SSE2_BIT    0x00000002
@@ -95,8 +76,11 @@
 
 #define TST_ARCH_PURE   0x00000000
 #define TST_ARCH_X86    TST_X86_BIT
+
 #if defined(_M_X64) || defined(__x86_64__)
-    #define TST_ARCH_X64
+    #define TST_BUILD_64
+#else
+    #define TST_BUILD_32 //32 bit build
 #endif
 #define TST_ARCH_SSE2   (TST_ARCH_X86 | TST_SSE2_BIT)
 #define TST_ARCH_SSE3   (TST_ARCH_SSE2 | TST_SSE3_BIT)
@@ -119,7 +103,7 @@
     #define TST_ARCH TST_ARCH_SSSE3
 #elif defined(__SSE3__)
     #define TST_ARCH TST_ARCH_SSE3
-#elif defined(__SSE2__) || defined(TST_ARCH_X64)
+#elif defined(__SSE2__) || defined(TST_BUILD_64)
     #define TST_ARCH TST_ARCH_SSE2
 #elif defined(__i386__) 
     #define TST_ARCH (TST_ARCH_X86)
@@ -147,6 +131,29 @@
 #elif TST_ARCH & TST_SSE2_BIT
     #include <emmintrin.h>
 #endif//GLM_ARCH
+
+// Setup inlining
+
+#if TST_COMPILER & TST_COMPILER_VC
+#define TST_INLINE __forceinline
+#define TST_NEVER_INLINE __declspec((noinline))
+#define TST_CALL __vectorcall
+#elif TST_COMPILER & TST_COMPILER_GCC
+#define TST_INLINE inline __attribute__((__always_inline__))
+#define TST_NEVER_INLINE __attribute__((__noinline__))
+#ifdef TST_BUILD_32
+    #define TST_CALL __attribute__((fastcall)) //GCC probably don't have vectorcall
+#else
+    #define TST_CALL
+#endif
+#elif TST_COMPILER & TST_COMPILER_CLANG
+#define TST_INLINE inline __attribute__((__always_inline__))
+#define TST_NEVER_INLINE __attribute__((__noinline__))
+#define TST_CALL _vectorcall
+#else
+#define TST_INLINE inline
+#define TST_NEVER_INLINE
+#endif
 
 
 #if TST_ARCH & TST_SSE2_BIT
