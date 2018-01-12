@@ -15,7 +15,7 @@ namespace tst {
 
         union 
         {
-            T x, y, z, w;
+            struct { T x, y, z, w; };
             typename simd_type<T>::type simd_form;
             T data[4];
         };
@@ -27,7 +27,7 @@ namespace tst {
         constexpr vec(vec<4, T> const& v) = default;
 
         explicit vec(T scalar);
-        vec(T x, T y, T z, T w);
+        TST_CONSTEXPR vec(T x, T y, T z, T w);
 
         TST_INLINE vec<4, T>& TST_CALL operator=(vec<4, T> const& v) = default;
 

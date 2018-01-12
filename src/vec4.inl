@@ -7,12 +7,12 @@ namespace tst {
     // constructors
 
     template<typename T>
-    constexpr vec<4, T>::vec(T scalar)
+    TST_CONSTEXPR vec<4, T>::vec(T scalar)
         : x(scalar), y(scalar), z(scalar), w(scalar)
     {}
 
     template <typename T>
-    constexpr vec<4, T>::vec(T _x, T _y, T _z, T _w)
+    TST_CONSTEXPR vec<4, T>::vec(T _x, T _y, T _z, T _w)
         : x(_x), y(_y), z(_z), w(_w)
     {}
 
