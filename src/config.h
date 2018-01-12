@@ -137,10 +137,16 @@
 #if TST_COMPILER & TST_COMPILER_VC
 #define TST_INLINE __forceinline
 #define TST_NEVER_INLINE __declspec((noinline))
+#if TST_COMPILER == TST_COMPILER_VC15
+    #define TST_CONSTEXPR constexpr
+#else
+    #define TST_CONSTEXPR
+#endif
 #define TST_CALL __vectorcall
 #elif TST_COMPILER & TST_COMPILER_GCC
 #define TST_INLINE inline __attribute__((__always_inline__))
 #define TST_NEVER_INLINE __attribute__((__noinline__))
+#define TST_CONSTEXPR constexpr
 #ifdef TST_BUILD_32
     #define TST_CALL __attribute__((fastcall)) //GCC probably don't have vectorcall
 #else
@@ -149,6 +155,7 @@
 #elif TST_COMPILER & TST_COMPILER_CLANG
 #define TST_INLINE inline __attribute__((__always_inline__))
 #define TST_NEVER_INLINE __attribute__((__noinline__))
+#define TST_CONSTEXPR constexpr
 #define TST_CALL __attribute__((vectorcall))
 #else
 #define TST_INLINE inline
