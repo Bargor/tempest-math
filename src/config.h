@@ -149,6 +149,7 @@
 #define TST_INLINE inline __attribute__((__always_inline__))
 #define TST_NEVER_INLINE __attribute__((__noinline__))
 #define TST_CONSTEXPR constexpr
+#define TST_FUNC_SPEC TST_CONSTEXPR
 #ifdef TST_BUILD_32
     #define TST_CALL __attribute__((fastcall)) //GCC probably don't have vectorcall
 #else
@@ -158,6 +159,7 @@
 #define TST_INLINE inline __attribute__((__always_inline__))
 #define TST_NEVER_INLINE __attribute__((__noinline__))
 #define TST_CONSTEXPR constexpr
+#define TST_FUNC_SPEC TST_CONSTEXPR
 #define TST_CALL __attribute__((vectorcall))
 #else
 #define TST_INLINE inline
