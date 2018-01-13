@@ -26,8 +26,8 @@ namespace tst {
         constexpr vec() = default;
         constexpr vec(vec<4, T> const& v) = default;
 
-        explicit vec(T scalar);
-        TST_CONSTEXPR vec(T x, T y, T z, T w);
+		TST_FUNC_SPEC explicit vec(T scalar);
+		TST_FUNC_SPEC vec(T x, T y, T z, T w);
 
         TST_INLINE vec<4, T>& TST_CALL operator=(vec<4, T> const& v) = default;
 

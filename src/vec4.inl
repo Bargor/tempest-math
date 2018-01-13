@@ -7,12 +7,12 @@ namespace tst {
     // constructors
 
     template<typename T>
-    TST_CONSTEXPR vec<4, T>::vec(T scalar)
+	TST_FUNC_SPEC vec<4, T>::vec(T scalar)
         : x(scalar), y(scalar), z(scalar), w(scalar)
     {}
 
     template <typename T>
-    TST_CONSTEXPR vec<4, T>::vec(T _x, T _y, T _z, T _w)
+	TST_FUNC_SPEC vec<4, T>::vec(T _x, T _y, T _z, T _w)
         : x(_x), y(_y), z(_z), w(_w)
     {}
 
