@@ -12,11 +12,12 @@ namespace tst {
     public:
 
         typedef T value_type;
+		using simd = typename simd_type<T>::type;
 
         union 
         {
             struct { T x, y, z, w; };
-            typename simd_type<T>::type simd_form;
+            simd simd_form;
             T data[4];
         };
 
@@ -25,11 +26,16 @@ namespace tst {
         // constructors
         constexpr vec() = default;
         constexpr vec(vec<4, T> const& v) = default;
+		
+		constexpr vec(simd simd);
 
 		TST_FUNC_SPEC explicit vec(T scalar);
 		TST_FUNC_SPEC vec(T x, T y, T z, T w);
 
-        TST_INLINE vec<4, T>& TST_CALL operator=(vec<4, T> const& v) = default;
+		constexpr vec<4, T>& TST_CALL operator=(vec<4, T> const& v) = default;
+
+		// conversion operators
+		operator bool() const noexcept;
 
         // unary operators
 

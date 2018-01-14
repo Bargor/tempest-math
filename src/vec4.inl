@@ -16,6 +16,18 @@ namespace tst {
         : x(_x), y(_y), z(_z), w(_w)
     {}
 
+	template <typename T>
+	TST_FUNC_SPEC vec<4, T>::vec(simd simd)
+		: simd_form(simd)
+	{}
+
+	// conversion operators
+
+	template<typename T>
+	constexpr vec<4, T>::operator bool() const noexcept {
+		return x | y | z | w;
+	}
+
     // binary operators
 
     template<>
@@ -76,13 +88,13 @@ namespace tst {
 
     //boolean operators
 
-    template<typename T>
-    constexpr bool TST_CALL operator==(vec<4, T> const& v1, vec<4, T> const& v2) noexcept {
-        return _mm_cmpeq_ps(v1.simd_form, v2.simd_form);
+    template<>
+    constexpr bool TST_CALL operator==(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
+        return vec<4, float> (_mm_cmpeq_ps(v1.simd_form, v2.simd_form));
     }
 
-    template<typename T>
-    constexpr bool TST_CALL operator!=(vec<4, T> const& v1, vec<4, T> const& v2) noexcept {
+    template<>
+    constexpr bool TST_CALL operator!=(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
         return _mm_cmpneq_ps(v1.simd_form, v2.simd_form);
     }
 
