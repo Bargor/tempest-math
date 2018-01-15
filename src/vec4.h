@@ -35,7 +35,7 @@ namespace tst {
 		constexpr vec<4, T>& TST_CALL operator=(vec<4, T> const& v) = default;
 
 		// conversion operators
-		operator bool() const noexcept;
+		constexpr operator bool() const noexcept;
 
         // unary operators
 

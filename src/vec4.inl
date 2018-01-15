@@ -17,7 +17,7 @@ namespace tst {
     {}
 
 	template <typename T>
-	TST_FUNC_SPEC vec<4, T>::vec(simd simd)
+	TST_FUNC_SPEC vec<4, T>::vec(typename simd simd)
 		: simd_form(simd)
 	{}
 

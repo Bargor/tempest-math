@@ -139,10 +139,10 @@
 #define TST_NEVER_INLINE __declspec((noinline))
 #if TST_COMPILER == TST_COMPILER_VC15
     #define TST_CONSTEXPR constexpr
-	#define TST_FUNC_SPEC TST_CONSTEXPR
+    #define TST_FUNC_SPEC TST_CONSTEXPR
 #else
     #define TST_CONSTEXPR
-	#define TST_FUNC_SPEC TST_INLINE
+    #define TST_FUNC_SPEC TST_INLINE
 #endif
 #define TST_CALL __vectorcall
 #elif TST_COMPILER & TST_COMPILER_GCC
