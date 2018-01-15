@@ -1,13 +1,9 @@
 # version format
 version: 0.0.1.{build}
 
-environment:
-  matrix:
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      generator: "Visual Studio 15 2017 Win64"
-
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-      generator: "Visual Studio 14 2015 Win64"
+image: 
+    - Visual Studio 2017
+    - Visual Studio 2015
 
 platform:
   - x64
@@ -20,7 +16,7 @@ install:
     - git submodule update --init --recursive
 
 before_build:
-    - cmake -G "$(generator)"
+    - cmake
 
 build:
   project: $(APPVEYOR_BUILD_FOLDER)\Project.sln
