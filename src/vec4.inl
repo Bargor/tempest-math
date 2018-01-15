@@ -23,7 +23,7 @@ namespace tst {
 
 	// conversion operators
 
-#if !TST_COMPILER & TST_COMPILER_VC 
+#if !TST_COMPILER & TST_COMPILER_VC //This code crashes MSVS 2015 & 2017, works on gcc
 
     template<typename T>
     constexpr vec<4, T>::operator bool() const noexcept {
