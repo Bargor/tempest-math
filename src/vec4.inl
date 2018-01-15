@@ -28,6 +28,11 @@ namespace tst {
 		return x | y | z | w;
 	}
 
+    template<>
+    constexpr vec<4, float>::operator bool() const noexcept {
+        return x == 0.0f || y == 0.0f || z == 0.0f || w == 0.0f;
+    }
+
     // binary operators
 
     template<>
@@ -89,13 +94,13 @@ namespace tst {
     //boolean operators
 
     template<>
-    constexpr bool TST_CALL operator==(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
+    bool TST_CALL operator==(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
         return vec<4, float> (_mm_cmpeq_ps(v1.simd_form, v2.simd_form));
     }
 
     template<>
-    constexpr bool TST_CALL operator!=(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
-        return _mm_cmpneq_ps(v1.simd_form, v2.simd_form);
+    bool TST_CALL operator!=(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
+        return vec<4, float> (_mm_cmpneq_ps(v1.simd_form, v2.simd_form));
     }
 
     //unary operators

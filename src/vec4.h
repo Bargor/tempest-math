@@ -68,9 +68,9 @@ namespace tst {
     //boolean operators
 
     template<typename T>
-    constexpr bool TST_CALL operator==(vec<4, T> const& v1, vec<4, T> const& v2) noexcept;
+    bool TST_CALL operator==(vec<4, T> const& v1, vec<4, T> const& v2) noexcept;
     template<typename T>
-    constexpr bool TST_CALL operator!=(vec<4, T> const& v1, vec<4, T> const& v2) noexcept;
+    bool TST_CALL operator!=(vec<4, T> const& v1, vec<4, T> const& v2) noexcept;
 
     //unary operators
 
