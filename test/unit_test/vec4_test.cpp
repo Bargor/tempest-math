@@ -149,4 +149,89 @@ namespace tst {
 		EXPECT_FALSE(v1 != v2);
 	}
 
+    TEST(Vec4Test, unaryMinus) {
+        vec4 v1(6.0f, 12.0f, 18.0f, 24.0f);
+        v1 = -v1;
+        EXPECT_EQ(v1.x, -6.0f);
+        EXPECT_EQ(v1.y, -12.0f);
+        EXPECT_EQ(v1.z, -18.0f);
+        EXPECT_EQ(v1.w, -24.0f);
+    }
+
+    TEST(Vec4Test, binaryAdditionScalar) {
+        vec4 v1(6.0f, 12.0f, 18.0f, 24.0f);
+        vec4 v2 = v1 + 1.0f;
+        EXPECT_EQ(v2.x, 7.0f);
+        EXPECT_EQ(v2.y, 13.0f);
+        EXPECT_EQ(v2.z, 19.0f);
+        EXPECT_EQ(v2.w, 25.0f);
+    }
+
+    TEST(Vec4Test, binaryAdditionVector) {
+        vec4 v1(6.0f, 12.0f, 18.0f, 24.0f);
+        vec4 v2(1.0f, 2.0f, 3.0f, 4.0f);
+        auto v3 = v1 + v2;
+        EXPECT_EQ(v3.x, 7.0f);
+        EXPECT_EQ(v3.y, 14.0f);
+        EXPECT_EQ(v3.z, 21.0f);
+        EXPECT_EQ(v3.w, 28.0f);
+    }
+
+    TEST(Vec4Test, binarySubtractionScalar) {
+        vec4 v1(6.0f, 12.0f, 18.0f, 24.0f);
+        vec4 v2 = v1 - 1.0f;
+        EXPECT_EQ(v2.x, 5.0f);
+        EXPECT_EQ(v2.y, 11.0f);
+        EXPECT_EQ(v2.z, 17.0f);
+        EXPECT_EQ(v2.w, 23.0f);
+    }
+
+    TEST(Vec4Test, binarySubtractionVector) {
+        vec4 v1(6.0f, 12.0f, 18.0f, 24.0f);
+        vec4 v2(1.0f, 2.0f, 3.0f, 4.0f);
+        auto v3 = v1 - v2;
+        EXPECT_EQ(v3.x, 5.0f);
+        EXPECT_EQ(v3.y, 10.0f);
+        EXPECT_EQ(v3.z, 15.0f);
+        EXPECT_EQ(v3.w, 20.0f);
+    }
+
+    TEST(Vec4Test, binaryMultiplicationScalar) {
+        vec4 v1(1.0f, 2.0f, 3.0f, 4.0f);
+        vec4 v2 = v1 * 2.0f;
+        EXPECT_EQ(v2.x, 2.0f);
+        EXPECT_EQ(v2.y, 4.0f);
+        EXPECT_EQ(v2.z, 6.0f);
+        EXPECT_EQ(v2.w, 8.0f);
+    }
+
+    TEST(Vec4Test, binaryMultiplicationVector) {
+        vec4 v1(1.0f, 2.0f, 3.0f, 4.0f);
+        vec4 v2(1.0f, 2.0f, 3.0f, 4.0f);
+        auto v3 = v1 * v2;
+        EXPECT_EQ(v3.x, 1.0f);
+        EXPECT_EQ(v3.y, 4.0f);
+        EXPECT_EQ(v3.z, 9.0f);
+        EXPECT_EQ(v3.w, 16.0f);
+    }
+
+    TEST(Vec4Test, binaryDivisionScalar) {
+        vec4 v1(6.0f, 12.0f, 18.0f, 24.0f);
+        vec4 v2 = v1 / 3.0f;
+        EXPECT_EQ(v2.x, 2.0f);
+        EXPECT_EQ(v2.y, 4.0f);
+        EXPECT_EQ(v2.z, 6.0f);
+        EXPECT_EQ(v2.w, 8.0f);
+    }
+
+    TEST(Vec4Test, binaryDivisionVector) {
+        vec4 v1(6.0f, 12.0f, 18.0f, 24.0f);
+        vec4 v2(1.0f, 2.0f, 3.0f, 4.0f);
+        auto v3 = v1 / v2;
+        EXPECT_EQ(v3.x, 6.0f);
+        EXPECT_EQ(v3.y, 6.0f);
+        EXPECT_EQ(v3.z, 6.0f);
+        EXPECT_EQ(v3.w, 6.0f);
+    }
+
 }
