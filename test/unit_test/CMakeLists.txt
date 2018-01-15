@@ -24,10 +24,10 @@ include(${CMAKE_SOURCE_DIR}/GatherSources.cmake)
 #TODO Make it better
 file(GLOB_RECURSE TEST_CODE "*_test.cpp")
 
-source_group("Tests" FILES ${TEST_CODE})
-
 set(TEST_RUNNER test_runner.cpp)
 set(TEST_SRCS ${TEST_RUNNER} ${TEST_CODE})
+
+source_group("Tests" FILES ${TEST_SRCS})
 
 add_executable (math_test ${TEST_SRCS} ${TEMPEST_CODE})
 add_test(NAME unit_test COMMAND math_test)
