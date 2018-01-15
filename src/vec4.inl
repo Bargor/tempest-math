@@ -23,14 +23,18 @@ namespace tst {
 
 	// conversion operators
 
-	template<typename T>
-	constexpr vec<4, T>::operator bool() const noexcept {
-		return x | y | z | w;
-	}
+#if !TST_COMPILER & TST_COMPILER_VC 
+
+    template<typename T>
+    constexpr vec<4, T>::operator bool() const noexcept {
+        return x | y | z | w;
+    }
+#endif
+
 
     template<>
     constexpr vec<4, float>::operator bool() const noexcept {
-        return x == 0.0f || y == 0.0f || z == 0.0f || w == 0.0f;
+        return x == 0.0f && y == 0.0f && z == 0.0f && w == 0.0f;
     }
 
     // binary operators

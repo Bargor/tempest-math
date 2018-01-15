@@ -52,6 +52,7 @@
     #endif  
 
 #elif defined(__clang__)
+#pragma message("Clang compiler")
     #if __clang_major__ == 4 && __clang_minor__ == 0
         #define TST_COMPILER TST_COMPILER_CLANG40
     #elif __clang_major__ == 4 && __clang_minor__ == 1
