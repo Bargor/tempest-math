@@ -52,7 +52,7 @@
     #endif  
 
 #elif defined(__clang__)
-#pragma message("Clang compiler")
+    #pragma message("Clang compiler")
     #if __clang_major__ == 4 && __clang_minor__ == 0
         #define TST_COMPILER TST_COMPILER_CLANG40
     #elif __clang_major__ == 4 && __clang_minor__ == 1
@@ -171,6 +171,9 @@
 #else
 #define TST_INLINE inline
 #define TST_NEVER_INLINE
+#define TST_CONSTEXPR 
+#define TST_FUNC_SPEC TST_INLINE
+#define TST_CALL 
 #endif
 
 

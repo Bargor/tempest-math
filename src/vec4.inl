@@ -34,7 +34,7 @@ namespace tst {
 
     template<>
     constexpr vec<4, float>::operator bool() const noexcept {
-        return x == 0.0f && y == 0.0f && z == 0.0f && w == 0.0f;
+        return x != 0.0f && y != 0.0f && z != 0.0f && w != 0.0f;
     }
 
     // binary operators
@@ -99,12 +99,14 @@ namespace tst {
 
     template<>
     TST_INLINE bool TST_CALL operator==(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
-        return vec<4, float> (_mm_cmpeq_ps(v1.simd_form, v2.simd_form));
+        vec<4, float> res(_mm_cmpeq_ps(v1.simd_form, v2.simd_form));
+        return res.x != 0.0f && res.y != 0.0f && res.z != 0.0f && res.w != 0.0f;
     }
 
     template<>
     TST_INLINE bool TST_CALL operator!=(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
-        return vec<4, float> (_mm_cmpneq_ps(v1.simd_form, v2.simd_form));
+        vec<4, float> res (_mm_cmpneq_ps(v1.simd_form, v2.simd_form));
+        return res.x != 0.0f || res.y != 0.0f || res.z != 0.0f || res.w != 0.0f;
     }
 
     //unary operators
