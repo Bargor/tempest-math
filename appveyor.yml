@@ -16,7 +16,7 @@ install:
     - git submodule update --init --recursive
 
 before_build:
-    - cmake
+    - cmake .
 
 build:
   project: $(APPVEYOR_BUILD_FOLDER)\Project.sln
