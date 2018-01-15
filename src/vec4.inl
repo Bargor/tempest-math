@@ -17,7 +17,7 @@ namespace tst {
     {}
 
 	template <typename T>
-	TST_FUNC_SPEC vec<4, T>::vec(simd simd)
+    TST_FUNC_SPEC vec<4, T>::vec(typename simd_type<T>::type simd)
 		: simd_form(simd)
 	{}
 
@@ -94,12 +94,12 @@ namespace tst {
     //boolean operators
 
     template<>
-    bool TST_CALL operator==(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
+    TST_INLINE bool TST_CALL operator==(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
         return vec<4, float> (_mm_cmpeq_ps(v1.simd_form, v2.simd_form));
     }
 
     template<>
-    bool TST_CALL operator!=(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
+    TST_INLINE bool TST_CALL operator!=(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
         return vec<4, float> (_mm_cmpneq_ps(v1.simd_form, v2.simd_form));
     }
 

@@ -26,13 +26,13 @@ namespace tst {
         // constructors
         constexpr vec() = default;
         constexpr vec(vec<4, T> const& v) = default;
-		
-		constexpr vec(simd simd);
 
 		TST_FUNC_SPEC explicit vec(T scalar);
 		TST_FUNC_SPEC vec(T x, T y, T z, T w);
 
-		constexpr vec<4, T>& TST_CALL operator=(vec<4, T> const& v) = default;
+        TST_FUNC_SPEC vec(typename simd_type<T>::type simd);
+
+		vec<4, T>& TST_CALL operator=(vec<4, T> const& v) = default;
 
 		// conversion operators
 		constexpr operator bool() const noexcept;

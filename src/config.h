@@ -33,6 +33,8 @@
 #define TST_COMPILER_CLANG40    0x00040001
 #define TST_COMPILER_CLANG41    0x00040002
 #define TST_COMPILER_CLANG42    0x00040003
+#define TST_COMPILER_CLANG50    0x00040004
+#define TST_COMPILER_CLANG51    0x00040005
 
 // Detect compiler
 #ifdef _MSC_VER
@@ -56,8 +58,12 @@
         #define TST_COMPILER TST_COMPILER_CLANG41
     #elif __clang_major__ == 4 && __clang_minor__ >= 2
         #define TST_COMPILER TST_COMPILER_CLANG42
-    #elif __clang_major__ >= 4
-        #define TST_COMPILER TST_COMPILER_CLANG42
+    #elif __clang_major__ == 5 && __clang_minor__ == 0
+        #define TST_COMPILER TST_COMPILER_CLANG50
+    #elif __clang_major__ == 5 && __clang_minor__ >= 1
+        #define TST_COMPILER TST_COMPILER_CLANG51
+    #elif __clang_major__ >= 6 
+        #define TST_COMPILER TST_COMPILER_CLANG51
     #endif
 #else
     #define TST_COMPILER TST_COMPILER_UNKNOWN
@@ -160,7 +166,7 @@
 #define TST_NEVER_INLINE __attribute__((__noinline__))
 #define TST_CONSTEXPR constexpr
 #define TST_FUNC_SPEC TST_CONSTEXPR
-#define TST_CALL __attribute__((vectorcall))
+#define TST_CALL 
 #else
 #define TST_INLINE inline
 #define TST_NEVER_INLINE
