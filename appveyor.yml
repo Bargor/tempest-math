@@ -1,7 +1,9 @@
 # version format
 version: 0.0.1.{build}
 
-image: Visual Studio 2017
+image: 
+    - Visual Studio 2017
+    - Visual Studio 2015
 
 platform:
   - x64
