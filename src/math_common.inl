@@ -38,13 +38,37 @@ namespace tst {
         return _mm_cvtss_f32(_mm_rsqrt_ss(_mm_set_ss(v))) * v;
     }
 
+#if TST_ARCH & TST_SSE41_BIT
     template <>
-    TST_INLINE vec<4, float> TST_CALL dot(const vec<4, float>& v) noexcept {
+    TST_INLINE float TST_CALL dot(const vec<4, float>& v1, const vec<4, float>& v2) noexcept {
+        _mm_dp_ps(v1.simd_form, v2.simd_form, 0xFF);
+    }
+
+#elif TST_ARCH & TST_SSE3_BIT
+
+    template <>
+    TST_INLINE float TST_CALL dot(const vec<4, float>& v1, const vec<4, float>& v2) noexcept {
+        vec<4, float> res = v1 * v2;
+        vec<4, float> shuf = _mm_movehdup_ps(res.simd_form);        // broadcast elements 3,1 to 2,0
+        vec<4, float> sums = _mm_add_ps(res.simd_form, shuf.simd_form);
+        shuf = _mm_movehl_ps(shuf.simd_form, sums.simd_form); // high half -> low half
+        sums = _mm_add_ss(sums.simd_form, shuf.simd_form);
+        return _mm_cvtss_f32(sums.simd_form);
+    }
+#else
+    template <>
+    TST_INLINE float TST_CALL dot(const vec<4, float>& v1, const vec<4, float>& v2) noexcept {
+        vec<4, float> res = v1 * v2;
+        vec<4, float> shuf(_mm_shuffle_ps(res.simd_form, res.simd_form, _MM_SHUFFLE(2, 3, 0, 1)));  // [ C D | A B ]
+        vec<4, float> sums(_mm_add_ps(res.simd_form, shuf.simd_form));      // sums = [ D+C C+D | B+A A+B ]
+        shuf = _mm_movehl_ps(shuf.simd_form, sums.simd_form);      //  [   C   D | D+C C+D ]  // let the compiler avoid a mov by reusing shuf
+        sums = _mm_add_ss(sums.simd_form, shuf.simd_form);
+        return _mm_cvtss_f32(sums.simd_form);
+    }
+#endif
+    template <>
+    TST_INLINE vec<4, float> TST_CALL cross(const vec<4, float>& v1, const vec<4, float>& v2) noexcept {
 
     }
 
-    template <>
-    TST_INLINE vec<4, float> TST_CALL cross(const vec<4, float>& v) noexcept {
-
-    }
 }

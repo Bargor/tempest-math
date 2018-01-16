@@ -16,10 +16,10 @@ namespace tst {
     float TST_CALL sqrt_fast(const float v) noexcept;
 
     template <typename T>
-    vec<4, T> TST_CALL dot(const vec<4, T>& v) noexcept;
+    float TST_CALL dot(const vec<4, T>& v1, const vec<4, T>& v2) noexcept;
 
     template <typename T>
-    vec<4, T> TST_CALL cross(const vec<4, T>& v) noexcept;
+    vec<4, T> TST_CALL cross(const vec<4, T>& v1, const vec<4, T>& v2) noexcept;
 
 }
 
