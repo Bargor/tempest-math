@@ -16,7 +16,7 @@ execute_process(COMMAND git -C ${CMAKE_SOURCE_DIR} rev-parse --short HEAD OUTPUT
 
 message(${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}:${VERSION_REVISION})
 
-set(INCLUDE_PATHS ${CMAKE_SOURCE_DIR}/src)
+set(INCLUDE_PATHS ${CMAKE_SOURCE_DIR}/math)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -38,5 +38,5 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 	set(TST_COMPILE_OPTIONS -Wall -Werror -W)
 endif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 
-add_subdirectory(src)
+add_subdirectory(math)
 add_subdirectory(test)
