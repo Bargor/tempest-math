@@ -32,6 +32,8 @@ namespace tst {
 
         TST_FUNC_SPEC vec(typename simd_type<T>::type simd);
 
+        TST_FUNC_SPEC vec(vec<4, T> const &v, T _w);
+
 		vec<4, T>& TST_CALL operator=(vec<4, T> const& v) = default;
 
 		// conversion operators

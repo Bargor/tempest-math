@@ -35,6 +35,15 @@ namespace tst {
         EXPECT_EQ(v2.w, 4.0f);
     }
 
+    TEST(Vec4Test, constructionVectorScalar) {
+        vec4 v(1.0f, 2.0f, 3.0f, 4.0f);
+        vec4 v2(v, 5.0f);
+        EXPECT_EQ(v2.x, 1.0f);
+        EXPECT_EQ(v2.y, 2.0f);
+        EXPECT_EQ(v2.z, 3.0f);
+        EXPECT_EQ(v2.w, 5.0f);
+    }
+
 	TEST(Vec4Test, length) {
 		vec4 v(1.0f, 2.0f, 3.0f, 4.0f);
 		EXPECT_EQ(v.length(), 4);

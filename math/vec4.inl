@@ -21,6 +21,14 @@ namespace tst {
 		: simd_form(simd)
 	{}
 
+    template <typename T>
+    TST_FUNC_SPEC vec<4, T>::vec(vec<4, T> const &v, T _w)
+        : simd_form(v.simd_form)
+    {
+        w = _w;
+    }
+
+
 	// conversion operators
 
 #if !TST_COMPILER & TST_COMPILER_VC //This code crashes MSVS 2015 & 2017, works on gcc

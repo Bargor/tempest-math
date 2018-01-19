@@ -3,6 +3,7 @@
 
 #pragma once
 #include <cstdio>
+#include <cstdlib>
 
 namespace tst 
 {

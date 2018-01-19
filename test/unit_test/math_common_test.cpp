@@ -62,4 +62,10 @@ namespace tst {
         EXPECT_EQ(v.z, -4.0f);
         EXPECT_EQ(v.w, 0.0f);
     }
+
+    TEST(MathCommonTest, vectorLength) {
+        vec4 v(1.0f, 2.0f, 3.0f, 4.0f);
+        float f = length(v);
+        EXPECT_EQ(f, sqrt(30.0f));
+    }
 }

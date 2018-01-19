@@ -41,7 +41,7 @@ namespace tst {
 #if TST_ARCH & TST_SSE41_BIT
     template <>
     TST_INLINE float TST_CALL dot(const vec<4, float>& v1, const vec<4, float>& v2) noexcept {
-        _mm_dp_ps(v1.simd_form, v2.simd_form, 0xFF);
+        return _mm_cvtss_f32(_mm_dp_ps(v1.simd_form, v2.simd_form, 0xFF));
     }
 
 #elif TST_ARCH & TST_SSE3_BIT
@@ -73,6 +73,11 @@ namespace tst {
                 _mm_shuffle_ps(v2.simd_form, v2.simd_form, _MM_SHUFFLE(3, 1, 0, 2))),
             _mm_mul_ps(_mm_shuffle_ps(v1.simd_form, v1.simd_form, _MM_SHUFFLE(3, 1, 0, 2)), _mm_shuffle_ps(v2.simd_form, v2.simd_form, _MM_SHUFFLE(3, 0, 2, 1)))
         );
+    }
+
+    template <typename T>
+    float TST_CALL length(const vec<4, T>& v) noexcept {
+        return sqrt(dot(v, v));
     }
 
 }
