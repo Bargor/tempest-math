@@ -1,7 +1,7 @@
 // This file is part of Tempest-math project
 // Author: Karol Kontny
 
-#include <vec4.h>
+#include "vec4.h"
 
 namespace tst {
 
