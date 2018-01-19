@@ -42,4 +42,24 @@ namespace tst {
         float v = dot(v1, v2);
         EXPECT_EQ(v, 130.0f);
     }
+
+    TEST(MathCommonTest, crossVector3) {
+        vec4 v1(1.0f, 2.0f, 3.0f, 0.0f);
+        vec4 v2(4.0f, 5.0f, 6.0f, 0.0f);
+        vec4 v = cross(v1, v2);
+        EXPECT_EQ(v.x, -3.0f);
+        EXPECT_EQ(v.y, 6.0f);
+        EXPECT_EQ(v.z, -3.0f);
+        EXPECT_EQ(v.w, 0.0f);
+    }
+
+    TEST(MathCommonTest, crossVector4) {
+        vec4 v1(1.0f, 2.0f, 3.0f, 4.0f);
+        vec4 v2(5.0f, 6.0f, 7.0f, 8.0f);
+        vec4 v = cross(v1, v2);
+        EXPECT_EQ(v.x, -4.0f);
+        EXPECT_EQ(v.y, 8.0f);
+        EXPECT_EQ(v.z, -4.0f);
+        EXPECT_EQ(v.w, 0.0f);
+    }
 }

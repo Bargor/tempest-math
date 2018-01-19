@@ -68,7 +68,11 @@ namespace tst {
 #endif
     template <>
     TST_INLINE vec<4, float> TST_CALL cross(const vec<4, float>& v1, const vec<4, float>& v2) noexcept {
-
+        return _mm_sub_ps(
+            _mm_mul_ps(_mm_shuffle_ps(v1.simd_form, v1.simd_form, _MM_SHUFFLE(3, 0, 2, 1)),
+                _mm_shuffle_ps(v2.simd_form, v2.simd_form, _MM_SHUFFLE(3, 1, 0, 2))),
+            _mm_mul_ps(_mm_shuffle_ps(v1.simd_form, v1.simd_form, _MM_SHUFFLE(3, 1, 0, 2)), _mm_shuffle_ps(v2.simd_form, v2.simd_form, _MM_SHUFFLE(3, 0, 2, 1)))
+        );
     }
 
 }
