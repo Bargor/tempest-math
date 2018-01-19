@@ -8,6 +8,7 @@ namespace tst {
         return vec<4, float>(_mm_sqrt_ps(v.simd_form));
     }
 
+    template<>
     TST_INLINE float TST_CALL sqrt(const float v) noexcept {
         return _mm_cvtss_f32(_mm_sqrt_ss(_mm_set_ss(v)));
     }
@@ -34,8 +35,29 @@ namespace tst {
         return vec<4, float>(_mm_rsqrt_ps(v.simd_form)) * v;
     }
 
+    template <>
     TST_INLINE float TST_CALL sqrt_fast(const float v) noexcept {
         return _mm_cvtss_f32(_mm_rsqrt_ss(_mm_set_ss(v))) * v;
+    }
+
+    template <typename T>
+    constexpr vec<4, T> TST_CALL rsqrt(const vec<4, T>& v) noexcept {
+        return vec<4, T>(static_cast<T>(1)) / sqrt(v);
+    }
+
+    template <typename T>
+    constexpr T TST_CALL rsqrt(const T v) noexcept {
+        return static_cast<T>(1) / sqrt(v);
+    }
+
+    template <typename T>
+    TST_INLINE vec<4, T> TST_CALL rsqrt_fast(const vec<4, T>& v) noexcept {
+        return vec<4, float>(_mm_rsqrt_ps(v.simd_form));
+    }
+
+    template <>
+    TST_INLINE float TST_CALL rsqrt_fast(const float v) noexcept {
+        return _mm_cvtss_f32(_mm_rsqrt_ss(_mm_set_ss(v)));
     }
 
 #if TST_ARCH & TST_SSE41_BIT
@@ -76,8 +98,13 @@ namespace tst {
     }
 
     template <typename T>
-    float TST_CALL length(const vec<4, T>& v) noexcept {
+    constexpr float TST_CALL length(const vec<4, T>& v) noexcept {
         return sqrt(dot(v, v));
+    }
+
+    template <typename T>
+    constexpr vec<4, T> TST_CALL normalize(const vec<4, T>& v) noexcept {
+        return v * rsqrt(dot(v, v));
     }
 
 }

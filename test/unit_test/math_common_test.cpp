@@ -68,4 +68,13 @@ namespace tst {
         float f = length(v);
         EXPECT_EQ(f, sqrt(30.0f));
     }
+
+    TEST(MathCommonTest, vectorNormalize) {
+        vec4 v(4.0f, 4.0f, 4.0f, 8.0f);
+        vec4 res = normalize(v);
+        EXPECT_EQ(res.x, 1.0f / sqrt(7.0f));
+        EXPECT_EQ(res.y, 1.0f / sqrt(7.0f));
+        EXPECT_EQ(res.z, 1.0f / sqrt(7.0f));
+        EXPECT_EQ(res.w, 2.0f / sqrt(7.0f));
+    }
 }
