@@ -3,6 +3,18 @@
 
 namespace tst {
 
+    namespace internal {
+
+        template<>
+        TST_INLINE float TST_CALL horizontal_add(vec<4, float> v) {
+            vec<4, float> shuf(_mm_shuffle_ps(v.simd_form, v.simd_form, _MM_SHUFFLE(2, 3, 0, 1)));  // [ C D | A B ]
+            vec<4, float> sums(_mm_add_ps(v.simd_form, shuf.simd_form));      // sums = [ D+C C+D | B+A A+B ]
+            shuf = _mm_movehl_ps(shuf.simd_form, sums.simd_form);      //  [   C   D | D+C C+D ]  // let the compiler avoid a mov by reusing shuf
+            sums = _mm_add_ss(sums.simd_form, shuf.simd_form);
+            return _mm_cvtss_f32(sums.simd_form);
+        }
+    }
+
     template <>
     TST_INLINE vec<4, float> TST_CALL sqrt(const vec<4, float>& v) noexcept { //sqrt version
         return vec<4, float>(_mm_sqrt_ps(v.simd_form));
@@ -71,21 +83,13 @@ namespace tst {
     template <>
     TST_INLINE float TST_CALL dot(const vec<4, float>& v1, const vec<4, float>& v2) noexcept {
         vec<4, float> res = v1 * v2;
-        vec<4, float> shuf = _mm_movehdup_ps(res.simd_form);        // broadcast elements 3,1 to 2,0
-        vec<4, float> sums = _mm_add_ps(res.simd_form, shuf.simd_form);
-        shuf = _mm_movehl_ps(shuf.simd_form, sums.simd_form); // high half -> low half
-        sums = _mm_add_ss(sums.simd_form, shuf.simd_form);
-        return _mm_cvtss_f32(sums.simd_form);
+        return internal::horizontal_add(res);
     }
 #else
     template <>
     TST_INLINE float TST_CALL dot(const vec<4, float>& v1, const vec<4, float>& v2) noexcept {
         vec<4, float> res = v1 * v2;
-        vec<4, float> shuf(_mm_shuffle_ps(res.simd_form, res.simd_form, _MM_SHUFFLE(2, 3, 0, 1)));  // [ C D | A B ]
-        vec<4, float> sums(_mm_add_ps(res.simd_form, shuf.simd_form));      // sums = [ D+C C+D | B+A A+B ]
-        shuf = _mm_movehl_ps(shuf.simd_form, sums.simd_form);      //  [   C   D | D+C C+D ]  // let the compiler avoid a mov by reusing shuf
-        sums = _mm_add_ss(sums.simd_form, shuf.simd_form);
-        return _mm_cvtss_f32(sums.simd_form);
+        return internal::horizontal_add(res);
     }
 #endif
     template <>
@@ -105,6 +109,11 @@ namespace tst {
     template <typename T>
     constexpr vec<4, T> TST_CALL normalize(const vec<4, T>& v) noexcept {
         return v * rsqrt(dot(v, v));
+    }
+
+    template <typename T>
+    constexpr T TST_CALL distance(const vec<4, T> v1, const vec<4, T> v2) noexcept {
+        return sqrt(internal::horizontal_add((v1 - v2) * (v1 - v2)));
     }
 
 }

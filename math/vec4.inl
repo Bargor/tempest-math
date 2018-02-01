@@ -7,19 +7,19 @@ namespace tst {
     // constructors
 
     template<typename T>
-	TST_FUNC_SPEC vec<4, T>::vec(T scalar)
+    TST_FUNC_SPEC vec<4, T>::vec(T scalar)
         : x(scalar), y(scalar), z(scalar), w(scalar)
     {}
 
     template <typename T>
-	TST_FUNC_SPEC vec<4, T>::vec(T _x, T _y, T _z, T _w)
+    TST_FUNC_SPEC vec<4, T>::vec(T _x, T _y, T _z, T _w)
         : x(_x), y(_y), z(_z), w(_w)
     {}
 
-	template <typename T>
+    template <typename T>
     TST_FUNC_SPEC vec<4, T>::vec(typename simd_type<T>::type simd)
-		: simd_form(simd)
-	{}
+        : simd_form(simd)
+    {}
 
     template <typename T>
     TST_FUNC_SPEC vec<4, T>::vec(vec<4, T> const &v, T _w)
@@ -29,7 +29,7 @@ namespace tst {
     }
 
 
-	// conversion operators
+    // conversion operators
 
 #if !TST_COMPILER & TST_COMPILER_VC //This code crashes MSVS 2015 & 2017, works on gcc
 

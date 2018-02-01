@@ -107,4 +107,11 @@ namespace tst {
         EXPECT_EQ(res.z, 1.0f / sqrt(7.0f));
         EXPECT_EQ(res.w, 2.0f / sqrt(7.0f));
     }
+
+    TEST(MathCommonTest, distance) {
+        vec4 v1(1.0f, 1.0f, 1.0f, 1.0f);
+        vec4 v2(2.0f, 2.0f, 2.0f, 2.0f);
+        float f = distance(v1, v2);
+        EXPECT_EQ(f, 2.0f);
+    }
 }

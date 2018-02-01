@@ -47,6 +47,16 @@ namespace tst {
     template <typename T>
     constexpr vec<4, T> TST_CALL normalize(const vec<4, T>& v) noexcept;
 
+    template <typename T>
+    constexpr T TST_CALL distance(const vec<4, T> v1, const vec<4, T> v2) noexcept;
+
+    namespace internal {
+        template<typename T>
+        T TST_CALL horizontal_add(const vec<4, T> v) noexcept;
+
+    }
+
+
 }
 
 #include "math_common.inl"
