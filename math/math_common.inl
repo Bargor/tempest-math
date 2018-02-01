@@ -6,7 +6,7 @@ namespace tst {
     namespace internal {
 
         template<>
-        TST_INLINE float TST_CALL horizontal_add(vec<4, float> v) {
+        TST_INLINE float TST_CALL horizontal_add(vec<4, float> v) noexcept {
             vec<4, float> shuf(_mm_shuffle_ps(v.simd_form, v.simd_form, _MM_SHUFFLE(2, 3, 0, 1)));  // [ C D | A B ]
             vec<4, float> sums(_mm_add_ps(v.simd_form, shuf.simd_form));      // sums = [ D+C C+D | B+A A+B ]
             shuf = _mm_movehl_ps(shuf.simd_form, sums.simd_form);      //  [   C   D | D+C C+D ]  // let the compiler avoid a mov by reusing shuf
