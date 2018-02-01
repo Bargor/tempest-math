@@ -8,11 +8,11 @@
 namespace tst 
 {
 
-    inline void _assert(const char* expression, const char* file, int line)
+    /*inline void _assert(const char* expression, const char* file, int line)
     {
         fprintf(stderr, "Assertion '%s' failed, file '%s' line '%d'.", expression, file, line);
         abort();
-    }
+    }*/
 
 #undef assert
 
