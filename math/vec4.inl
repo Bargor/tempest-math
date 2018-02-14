@@ -195,8 +195,9 @@ namespace tst {
 
     template<>
     TST_INLINE vec<4, std::uint32_t> TST_CALL operator<(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
-        vec<4, std::uint32_t>::simd* res = reinterpret_cast<vec<4, std::uint32_t>::simd*>(&_mm_cmplt_ps(v1.simd_form, v2.simd_form));
-        return vec<4, std::uint32_t>(*res);
+        auto res = _mm_cmplt_ps(v1.simd_form, v2.simd_form);
+        vec<4, std::uint32_t>::simd* res_ptr = reinterpret_cast<vec<4, std::uint32_t>::simd*>(&res);
+        return vec<4, std::uint32_t>(*res_ptr);
     }
 
     template<>
