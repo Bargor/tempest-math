@@ -6,7 +6,7 @@ namespace tst {
     namespace internal {
 
         template<>
-        TST_INLINE float TST_CALL horizontal_add(vec<4, float> v) noexcept {
+        TST_INLINE float TST_CALL horizontal_add(const vec<4, float> v) noexcept {
             vec<4, float> shuf(_mm_shuffle_ps(v.simd_form, v.simd_form, _MM_SHUFFLE(2, 3, 0, 1)));  // [ C D | A B ]
             vec<4, float> sums(_mm_add_ps(v.simd_form, shuf.simd_form));      // sums = [ D+C C+D | B+A A+B ]
             shuf = _mm_movehl_ps(shuf.simd_form, sums.simd_form);      //  [   C   D | D+C C+D ]  // let the compiler avoid a mov by reusing shuf
@@ -114,6 +114,17 @@ namespace tst {
     template <typename T>
     constexpr T TST_CALL distance(const vec<4, T> v1, const vec<4, T> v2) noexcept {
         return sqrt(internal::horizontal_add((v1 - v2) * (v1 - v2)));
+    }
+
+    template <typename T>
+    constexpr float TST_CALL abs(const T v) noexcept {
+        return std::abs(v);
+    }
+
+    template <>
+    TST_INLINE vec<4, float> TST_CALL abs(const vec<4, float> v) noexcept {
+        const vec<4, float> mask (_mm_set1_ps(-0.0f)); // -0.f = 1 << 31
+        return _mm_andnot_ps(mask.simd_form, v.simd_form);
     }
 
 }

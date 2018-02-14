@@ -114,4 +114,13 @@ namespace tst {
         float f = distance(v1, v2);
         EXPECT_EQ(f, 2.0f);
     }
+
+    TEST(MathCommonTest, abs) {
+        vec4 v(1.0f, -1.0f, 1.0f, -1.0f);
+        auto res = abs(v);
+        EXPECT_EQ(res.x, 1.0f);
+        EXPECT_EQ(res.y, 1.0f);
+        EXPECT_EQ(res.z, 1.0f);
+        EXPECT_EQ(res.w, 1.0f);
+    }
 }

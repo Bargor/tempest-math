@@ -25,7 +25,7 @@ namespace tst {
     constexpr vec<4, T> TST_CALL rsqrt(const vec<4, T>& v) noexcept;
 
     template <typename T>
-    constexpr T TST_CALL rsqrt(T v) noexcept;
+    constexpr T TST_CALL rsqrt(const T v) noexcept;
 
     template <typename T>
     vec<4, T> TST_CALL rsqrt_fast(const vec<4, T>& v) noexcept;
@@ -49,6 +49,12 @@ namespace tst {
 
     template <typename T>
     constexpr T TST_CALL distance(const vec<4, T> v1, const vec<4, T> v2) noexcept;
+
+    template <typename T>
+    constexpr T TST_CALL abs(const T v) noexcept;
+
+    template <typename T>
+    vec<4, T> TST_CALL abs(const vec<4, T> v) noexcept;
 
     namespace internal {
         template<typename T>
