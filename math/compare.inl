@@ -5,23 +5,23 @@
 namespace tst {
 
     template<typename T>
-    constexpr T TST_CALL epsilonEq(const T v1, const T v2, const T epsilon) noexcept {
-        return abs(v1 - v2) < epsilon;
+    TST_INLINE bool TST_CALL epsilonEq(const T v1, const T v2, const T epsilon) noexcept {
+        return std::abs(v1 - v2) < epsilon;
     }
 
     template<>
-    constexpr vec<4, bool> TST_CALL epsilonEq(const vec<4, float> v1, const vec<4, float> v2, const float epsilon) noexcept {
-        return abs(v1 - v2) < 
+    TST_INLINE vec<4, std::uint32_t> TST_CALL epsilonEq(const vec<4, float> v1, const vec<4, float> v2, const float epsilon) noexcept {
+        return abs(v1 - v2) < vec<4, float>(_mm_set1_ps(epsilon));
     }
 
     template<typename T>
-    constexpr T TST_CALL epsilonNeq(const T v1, const T v2, const T epsilon) noexcept {
-        return abs(v1 - v2) >= epsilon;
+    TST_INLINE bool TST_CALL epsilonNeq(const T v1, const T v2, const T epsilon) noexcept {
+        return std::abs(v1 - v2) >= epsilon;
     }
 
-    template<typename T, template<typename T> vec >
-    constexpr vec<bool> TST_CALL epsilonNeq(const vec<T> v1, const vec<T> v2, const T epsilon) noexcept {
-
+    template<>
+    TST_INLINE vec<4, std::uint32_t> TST_CALL epsilonNeq(const vec<4, float> v1, const vec<4, float> v2, const float epsilon) noexcept {
+        return abs(v1 - v2) >= vec<4, float>(_mm_set1_ps(epsilon));
     }
 
 }
