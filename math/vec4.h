@@ -110,6 +110,16 @@ namespace tst {
     constexpr vec<4, T> TST_CALL operator/(T scalar, vec<4, T> const& v) noexcept;
     template<typename T>
     constexpr vec<4, T> TST_CALL operator/(vec<4, T> const& v1, vec<4, T> const& v2) noexcept;
+
+    //comparison operators
+    template<typename T>
+    vec<4, std::uint32_t> TST_CALL operator<(vec<4, T> const& v1, vec<4, T> const& v2) noexcept;
+    template<typename T>
+    vec<4, std::uint32_t> TST_CALL operator<=(vec<4, T> const& v1, vec<4, T> const& v2) noexcept;
+    template<typename T>
+    vec<4, std::uint32_t> TST_CALL operator>(vec<4, T> const& v1, vec<4, T> const& v2) noexcept;
+    template<typename T>
+    vec<4, std::uint32_t> TST_CALL operator>=(vec<4, T> const& v1, vec<4, T> const& v2) noexcept;
     
 }
 

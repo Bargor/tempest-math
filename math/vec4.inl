@@ -190,4 +190,30 @@ namespace tst {
     constexpr vec<4, T> TST_CALL operator/(vec<4, T> const& v1, vec<4, T> const& v2) noexcept {
         return vec<4, T>(v1) /= v2;
     }
+
+    //comparison operators
+
+    template<>
+    TST_INLINE vec<4, std::uint32_t> TST_CALL operator<(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
+        vec<4, std::uint32_t>::simd* res = reinterpret_cast<vec<4, std::uint32_t>::simd*>(&_mm_cmplt_ps(v1.simd_form, v2.simd_form));
+        return vec<4, std::uint32_t>(*res);
+    }
+
+    template<>
+    TST_INLINE vec<4, std::uint32_t> TST_CALL operator<=(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
+        vec<4, std::uint32_t>::simd* res = reinterpret_cast<vec<4, std::uint32_t>::simd*>(&_mm_cmple_ps(v1.simd_form, v2.simd_form));
+        return vec<4, std::uint32_t>(*res);
+    }
+
+    template<>
+    TST_INLINE vec<4, std::uint32_t> TST_CALL operator>(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
+        vec<4, std::uint32_t>::simd* res = reinterpret_cast<vec<4, std::uint32_t>::simd*>(&_mm_cmpgt_ps(v1.simd_form, v2.simd_form));
+        return vec<4, std::uint32_t>(*res);
+    }
+
+    template<>
+    TST_INLINE vec<4, std::uint32_t> TST_CALL operator>=(vec<4, float> const& v1, vec<4, float> const& v2) noexcept {
+        vec<4, std::uint32_t>::simd* res = reinterpret_cast<vec<4, std::uint32_t>::simd*>(&_mm_cmpge_ps(v1.simd_form, v2.simd_form));
+        return vec<4, std::uint32_t>(*res);
+    }
 }
