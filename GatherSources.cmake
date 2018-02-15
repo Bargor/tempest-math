@@ -12,6 +12,8 @@ set(TEMPEST_CODE ${TEMPEST_CODE} ${CMAKE_SOURCE_DIR}/math/math_common.h)
 set(TEMPEST_CODE ${TEMPEST_CODE} ${CMAKE_SOURCE_DIR}/math/math_common.inl)
 set(TEMPEST_CODE ${TEMPEST_CODE} ${CMAKE_SOURCE_DIR}/math/compare.h)
 set(TEMPEST_CODE ${TEMPEST_CODE} ${CMAKE_SOURCE_DIR}/math/compare.inl)
+set(TEMPEST_CODE ${TEMPEST_CODE} ${CMAKE_SOURCE_DIR}/math/vec_utils.h)
+set(TEMPEST_CODE ${TEMPEST_CODE} ${CMAKE_SOURCE_DIR}/math/vec_utils.inl)
 
 source_group(TREE ${CMAKE_SOURCE_DIR}/math FILES ${TEMPEST_CODE})
 
