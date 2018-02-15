@@ -22,7 +22,7 @@ namespace tst {
     }
 
     template<typename T, length_t L, template <length_t, typename> typename vec>
-    TST_INLINE vec<L, T> TST_CALL not(const vec<L, T> v) noexcept {
+    TST_INLINE vec<L, T> TST_CALL negate(const vec<L, T> v) noexcept {
         vec<L, T> res;
         for (length_t i = 0; i < v.length(); i++) {
             res[i] = !v[i];

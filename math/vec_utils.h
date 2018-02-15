@@ -14,7 +14,7 @@ namespace tst {
     bool TST_CALL all(const vec<L, T> v) noexcept;
 
     template<typename T, length_t L, template <length_t, typename> typename vec>
-    vec<L, T> TST_CALL not(const vec<L, T> v) noexcept;
+    vec<L, T> TST_CALL negate(const vec<L, T> v) noexcept;
 
 }
 

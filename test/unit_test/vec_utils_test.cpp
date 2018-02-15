@@ -30,9 +30,9 @@ namespace tst {
         EXPECT_FALSE(res);
     }
 
-    TEST(VecUtilsTest, not) {
+    TEST(VecUtilsTest, negate) {
         vec<4, std::uint32_t> v(0, 1, 0, 1);
-        vec<4, std::uint32_t> res = not(v);
+        vec<4, std::uint32_t> res = negate(v);
         EXPECT_TRUE(res.x);
         EXPECT_FALSE(res.y);
         EXPECT_TRUE(res.z);
