@@ -36,6 +36,9 @@ namespace tst {
 
 		vec<4, T>& TST_CALL operator=(vec<4, T> const& v) = default;
 
+        T& TST_CALL operator[](length_t i) noexcept;
+        constexpr T const & TST_CALL operator[](length_t i) const noexcept;
+
 		// conversion operators
 		constexpr explicit operator bool() const noexcept;
 

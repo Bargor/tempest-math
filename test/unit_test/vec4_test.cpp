@@ -363,4 +363,12 @@ namespace tst {
         EXPECT_EQ(v3.w, 0xffffffff);
     }
 
+    TEST(Vec4Test, arrayOperator) {
+        vec4 v(1.0f, 2.0f, 3.0f, 4.0f);
+        EXPECT_EQ(v[0], 1.0f);
+        EXPECT_EQ(v[1], 2.0f);
+        EXPECT_EQ(v[2], 3.0f);
+        EXPECT_EQ(v[3], 4.0f);
+    }
+
 }

@@ -28,6 +28,18 @@ namespace tst {
         w = _w;
     }
 
+    template<typename T>
+    TST_INLINE T& TST_CALL vec<4, T>::operator[](length_t i) noexcept {
+        assert(i >= 0 && i <= length());
+        return data[i];
+    }
+
+    template<typename T>
+    constexpr T const & vec<4, T>::operator[](length_t i) const noexcept {
+        assert(i >= 0 && i <= length());
+        return data[i];
+    }
+
 
     // conversion operators
 
