@@ -35,6 +35,15 @@ namespace tst {
         EXPECT_EQ(v2.w, 4.0f);
     }
 
+    TEST(Vec4Test, constructionVectorScalar) {
+        vec4 v(1.0f, 2.0f, 3.0f, 4.0f);
+        vec4 v2(v, 5.0f);
+        EXPECT_EQ(v2.x, 1.0f);
+        EXPECT_EQ(v2.y, 2.0f);
+        EXPECT_EQ(v2.z, 3.0f);
+        EXPECT_EQ(v2.w, 5.0f);
+    }
+
 	TEST(Vec4Test, length) {
 		vec4 v(1.0f, 2.0f, 3.0f, 4.0f);
 		EXPECT_EQ(v.length(), 4);
@@ -232,6 +241,126 @@ namespace tst {
         EXPECT_EQ(v3.y, 6.0f);
         EXPECT_EQ(v3.z, 6.0f);
         EXPECT_EQ(v3.w, 6.0f);
+    }
+
+    TEST(Vec4Test, lessThan) {
+        vec4 v1(6.0f, 12.0f, 18.0f, 24.0f);
+        vec4 v2(1.0f, 2.0f, 3.0f, 4.0f);
+        auto v3 = v1 < v2;
+        EXPECT_EQ(v3.x, 0x0);
+        EXPECT_EQ(v3.y, 0x0);
+        EXPECT_EQ(v3.z, 0x0);
+        EXPECT_EQ(v3.w, 0x0);
+    }
+
+    TEST(Vec4Test, lessThan2) {
+        vec4 v1(1.0f, 2.0f, 3.0f, 4.0f);
+        vec4 v2(6.0f, 12.0f, 18.0f, 24.0f);
+        auto v3 = v1 < v2;
+        EXPECT_EQ(v3.x, 0xffffffff);
+        EXPECT_EQ(v3.y, 0xffffffff);
+        EXPECT_EQ(v3.z, 0xffffffff);
+        EXPECT_EQ(v3.w, 0xffffffff);
+    }
+
+    TEST(Vec4Test, lessThan3) {
+        vec4 v1(6.0f, 12.0f, 18.0f, 24.0f);
+        vec4 v2(1.0f, 12.0f, 20.0f, 4.0f);
+        auto v3 = v1 < v2;
+        EXPECT_EQ(v3.x, 0x0);
+        EXPECT_EQ(v3.y, 0x0);
+        EXPECT_EQ(v3.z, 0xffffffff);
+        EXPECT_EQ(v3.w, 0x0);
+    }
+
+    TEST(Vec4Test, lessEqual) {
+        vec4 v1(6.0f, 12.0f, 18.0f, 24.0f);
+        vec4 v2(1.0f, 2.0f, 3.0f, 4.0f);
+        auto v3 = v1 < v2;
+        EXPECT_EQ(v3.x, 0x0);
+        EXPECT_EQ(v3.y, 0x0);
+        EXPECT_EQ(v3.z, 0x0);
+        EXPECT_EQ(v3.w, 0x0);
+    }
+
+    TEST(Vec4Test, lessEqual2) {
+        vec4 v1(1.0f, 2.0f, 3.0f, 4.0f);
+        vec4 v2(6.0f, 12.0f, 18.0f, 24.0f);
+        auto v3 = v1 <= v2;
+        EXPECT_EQ(v3.x, 0xffffffff);
+        EXPECT_EQ(v3.y, 0xffffffff);
+        EXPECT_EQ(v3.z, 0xffffffff);
+        EXPECT_EQ(v3.w, 0xffffffff);
+    }
+
+    TEST(Vec4Test, lessEqual3) {
+        vec4 v1(6.0f, 12.0f, 18.0f, 24.0f);
+        vec4 v2(1.0f, 12.0f, 20.0f, 4.0f);
+        auto v3 = v1 <= v2;
+        EXPECT_EQ(v3.x, 0x0);
+        EXPECT_EQ(v3.y, 0xffffffff);
+        EXPECT_EQ(v3.z, 0xffffffff);
+        EXPECT_EQ(v3.w, 0x0);
+    }
+
+    TEST(Vec4Test, greaterThan) {
+        vec4 v1(6.0f, 12.0f, 18.0f, 24.0f);
+        vec4 v2(1.0f, 2.0f, 3.0f, 4.0f);
+        auto v3 = v1 > v2;
+        EXPECT_EQ(v3.x, 0xffffffff);
+        EXPECT_EQ(v3.y, 0xffffffff);
+        EXPECT_EQ(v3.z, 0xffffffff);
+        EXPECT_EQ(v3.w, 0xffffffff);
+    }
+
+    TEST(Vec4Test, greaterThan2) {
+        vec4 v1(1.0f, 2.0f, 3.0f, 4.0f);
+        vec4 v2(6.0f, 12.0f, 18.0f, 24.0f);
+        auto v3 = v1 > v2;
+        EXPECT_EQ(v3.x, 0x0);
+        EXPECT_EQ(v3.y, 0x0);
+        EXPECT_EQ(v3.z, 0x0);
+        EXPECT_EQ(v3.w, 0x0);
+    }
+
+    TEST(Vec4Test, greaterThan3) {
+        vec4 v1(6.0f, 12.0f, 18.0f, 24.0f);
+        vec4 v2(1.0f, 12.0f, 20.0f, 4.0f);
+        auto v3 = v1 > v2;
+        EXPECT_EQ(v3.x, 0xffffffff);
+        EXPECT_EQ(v3.y, 0x0);
+        EXPECT_EQ(v3.z, 0x0);
+        EXPECT_EQ(v3.w, 0xffffffff);
+    }
+
+    TEST(Vec4Test, greaterEqual) {
+        vec4 v1(6.0f, 12.0f, 18.0f, 24.0f);
+        vec4 v2(1.0f, 2.0f, 3.0f, 4.0f);
+        auto v3 = v1 >= v2;
+        EXPECT_EQ(v3.x, 0xffffffff);
+        EXPECT_EQ(v3.y, 0xffffffff);
+        EXPECT_EQ(v3.z, 0xffffffff);
+        EXPECT_EQ(v3.w, 0xffffffff);
+    }
+
+    TEST(Vec4Test, greaterEqual2) {
+        vec4 v1(1.0f, 2.0f, 3.0f, 4.0f);
+        vec4 v2(6.0f, 12.0f, 18.0f, 24.0f);
+        auto v3 = v1 >= v2;
+        EXPECT_EQ(v3.x, 0x0);
+        EXPECT_EQ(v3.y, 0x0);
+        EXPECT_EQ(v3.z, 0x0);
+        EXPECT_EQ(v3.w, 0x0);
+    }
+
+    TEST(Vec4Test, greaterEqual3) {
+        vec4 v1(6.0f, 12.0f, 18.0f, 24.0f);
+        vec4 v2(1.0f, 12.0f, 20.0f, 4.0f);
+        auto v3 = v1 >= v2;
+        EXPECT_EQ(v3.x, 0xffffffff);
+        EXPECT_EQ(v3.y, 0xffffffff);
+        EXPECT_EQ(v3.z, 0x0);
+        EXPECT_EQ(v3.w, 0xffffffff);
     }
 
 }
