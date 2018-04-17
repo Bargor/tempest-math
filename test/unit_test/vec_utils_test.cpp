@@ -5,6 +5,7 @@
 #include "tstmath.h"
 
 namespace tst {
+namespace math {
 
     TEST(VecUtilsTest, allTrue) {
         vec<4, std::uint32_t> v(1, 2, 3, 4);
@@ -38,4 +39,5 @@ namespace tst {
         EXPECT_TRUE(res.z);
         EXPECT_FALSE(res.w);
     }
+}
 }

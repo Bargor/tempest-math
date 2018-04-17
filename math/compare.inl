@@ -4,6 +4,8 @@
 
 namespace tst {
 
+namespace math {
+
     template<typename T>
     TST_INLINE bool TST_CALL epsilonEq(const T v1, const T v2, const T epsilon) noexcept {
         return std::abs(v1 - v2) < epsilon;
@@ -23,5 +25,5 @@ namespace tst {
     TST_INLINE vec<4, std::uint32_t> TST_CALL epsilonNeq(const vec<4, float> v1, const vec<4, float> v2, const float epsilon) noexcept {
         return abs(v1 - v2) >= vec<4, float>(_mm_set1_ps(epsilon));
     }
-
+}
 }

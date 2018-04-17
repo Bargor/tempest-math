@@ -6,6 +6,7 @@
 #include "vec.h"
 
 namespace tst {
+namespace math {
 
     template<typename T>
     class alignas(sizeof(typename simd_type<T>::type)) vec<4, T> {
@@ -124,6 +125,7 @@ namespace tst {
     template<typename T>
     vec<4, std::uint32_t> TST_CALL operator>=(vec<4, T> const& v1, vec<4, T> const& v2) noexcept;
     
+}
 }
 
 #include "vec4.inl"

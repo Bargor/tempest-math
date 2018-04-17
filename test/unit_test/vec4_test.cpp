@@ -5,6 +5,7 @@
 #include "tstmath.h"
 
 namespace tst {
+namespace math {
 
     TEST(Vec4Test, sizeOf) {
         EXPECT_EQ(sizeof(vec4), 16);
@@ -370,5 +371,5 @@ namespace tst {
         EXPECT_EQ(v[2], 3.0f);
         EXPECT_EQ(v[3], 4.0f);
     }
-
+}
 }

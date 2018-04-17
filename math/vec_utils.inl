@@ -2,6 +2,7 @@
 // Author: Karol Kontny
 
 namespace tst {
+namespace math {
 
     template<typename T, length_t L, template <length_t, typename> typename vec>
     TST_INLINE bool TST_CALL any(const vec<L, T> v) noexcept {
@@ -30,4 +31,5 @@ namespace tst {
         return res;
     }
 
+}
 }

@@ -2,7 +2,7 @@
 // Author: Karol Kontny
 
 namespace tst {
-
+namespace math {
 
     // constructors
 
@@ -232,4 +232,5 @@ namespace tst {
         vec<4, std::uint32_t>::simd* res_ptr = reinterpret_cast<vec<4, std::uint32_t>::simd*>(&res);
         return vec<4, std::uint32_t>(*res_ptr);
     }
-}
+} //namespace math
+} //namespace tst

@@ -5,6 +5,8 @@
 
 namespace tst {
 
+namespace math {
+
     //square root
 
     template <typename T>
@@ -62,7 +64,7 @@ namespace tst {
 
     }
 
-
+}
 }
 
 #include "math_common.inl"

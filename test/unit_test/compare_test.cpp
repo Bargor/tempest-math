@@ -6,6 +6,7 @@
 
 
 namespace tst {
+namespace math {
 
     TEST(CompareTest, epsilonEqScalarTrue) {
         bool r = epsilonEq(1.000f, 1.0001f, 0.001f);
@@ -66,4 +67,5 @@ namespace tst {
         EXPECT_TRUE(res.z);
         EXPECT_FALSE(res.w);
     }
+}
 }
