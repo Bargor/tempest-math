@@ -1,4 +1,5 @@
 language: cpp
+dist: xenial
 sudo: required
 
 notifications:
@@ -25,7 +26,7 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-7
+            - llvm-toolchain-xenial-7
           packages:
             - clang-7
       env:
@@ -33,8 +34,6 @@ matrix:
         
 before_install:
     - eval "${MATRIX_EVAL}"
-    - wget http://www.cmake.org/files/v3.11/cmake-3.11.0-Linux-x86_64.sh
-    - sudo sh cmake-3.11.0-Linux-x86_64.sh --skip-license --prefix=/usr
 # Build steps
 
 script:
