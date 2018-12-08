@@ -38,7 +38,9 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 	set(TST_COMPILE_OPTIONS -Wall -Werror -W)
 endif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 
-include(CTest)
-
 add_subdirectory(math)
-add_subdirectory(test)
+if(BUILD_TESTS)
+	include(CTest)
+	add_subdirectory(test)
+endif(BUILD_TESTS)
+
