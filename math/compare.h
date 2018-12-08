@@ -7,6 +7,8 @@
 
 namespace tst {
 
+namespace math {
+
     template<typename T>
     bool TST_CALL epsilonEq(const T v1, const T v2, const T epsilon) noexcept;
 
@@ -19,6 +21,7 @@ namespace tst {
     template<typename T, length_t L, template <length_t, typename> typename vec>
     vec<L, std::uint32_t> TST_CALL epsilonNeq(const vec<L, T> v1, const vec<L, T> v2, const T epsilon) noexcept;
 
+}
 }
 
 #include "compare.inl"

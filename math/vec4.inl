@@ -2,7 +2,7 @@
 // Author: Karol Kontny
 
 namespace tst {
-
+namespace math {
 
     // constructors
 
@@ -26,6 +26,18 @@ namespace tst {
         : simd_form(v.simd_form)
     {
         w = _w;
+    }
+
+    template<typename T>
+    TST_INLINE T& TST_CALL vec<4, T>::operator[](length_t i) noexcept {
+        assert(i >= 0 && i <= length());
+        return data[i];
+    }
+
+    template<typename T>
+    constexpr T const & vec<4, T>::operator[](length_t i) const noexcept {
+        assert(i >= 0 && i <= length());
+        return data[i];
     }
 
 
@@ -220,4 +232,5 @@ namespace tst {
         vec<4, std::uint32_t>::simd* res_ptr = reinterpret_cast<vec<4, std::uint32_t>::simd*>(&res);
         return vec<4, std::uint32_t>(*res_ptr);
     }
-}
+} //namespace math
+} //namespace tst

@@ -8,3 +8,4 @@
 #include "vec4.h"
 #include "math_common.h"
 #include "compare.h"
+#include "vec_utils.h"

@@ -6,6 +6,7 @@
 #include "config.h"
 
 namespace tst {
+namespace math {
 
     typedef std::uint32_t length_t;
 
@@ -26,4 +27,5 @@ namespace tst {
     typedef vec<4, std::uint32_t> vec4u;
     typedef vec<3, std::uint32_t> vec3u;
     typedef vec<2, std::uint32_t> vec2u;
+}
 }

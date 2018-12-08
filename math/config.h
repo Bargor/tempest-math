@@ -197,6 +197,8 @@ typedef __m256i		tst_u64vec4;
 
 namespace tst {
 
+namespace math {
+
     template<typename T>
     struct simd_type {
         using type = T;
@@ -240,4 +242,5 @@ namespace tst {
 
 #endif // TST_ARCH_AVX2
 
+}
 }

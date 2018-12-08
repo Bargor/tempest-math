@@ -2,6 +2,7 @@
 // Author: Karol Kontny
 
 namespace tst {
+namespace math {
 
     namespace internal {
 
@@ -127,4 +128,5 @@ namespace tst {
         return _mm_andnot_ps(mask.simd_form, v.simd_form);
     }
 
+}
 }

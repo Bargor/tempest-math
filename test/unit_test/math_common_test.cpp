@@ -5,6 +5,7 @@
 #include "tstmath.h"
 
 namespace tst {
+namespace math {
 
     TEST(MathCommonTest, sqrtVector) {
         vec4 v(1.0f, 4.0f, 9.0f, 16.0f);
@@ -123,4 +124,5 @@ namespace tst {
         EXPECT_EQ(res.z, 1.0f);
         EXPECT_EQ(res.w, 1.0f);
     }
+}
 }
