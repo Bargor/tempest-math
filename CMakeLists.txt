@@ -4,7 +4,9 @@
 # Usage (because CMake makes this more complicated than it should): 
 # Windows: cmake ..\tempest-math -G "Visual Studio 15 2017 Win64" 
 
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.13)
+
+project (Tempest-math CXX)
 
 # The project version number.
 set(VERSION_MAJOR   0   CACHE STRING "Project major version number.")
@@ -15,8 +17,6 @@ set(VERSION_PATCH   1   CACHE STRING "Project patch version number.")
 execute_process(COMMAND git -C ${CMAKE_SOURCE_DIR} rev-parse --short HEAD OUTPUT_VARIABLE VERSION_REVISION)
 
 message(${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}:${VERSION_REVISION})
-
-set(INCLUDE_PATHS ${CMAKE_SOURCE_DIR}/math)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -37,6 +37,8 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 	set(TST_COMPILE_OPTIONS -Wall -Werror -W)
 endif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+
+include(CTest)
 
 add_subdirectory(math)
 add_subdirectory(test)
