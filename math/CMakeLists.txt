@@ -1,4 +1,4 @@
-include(${CMAKE_SOURCE_DIR}/GatherSources.cmake)
+include(../GatherSources.cmake)
 
 add_library(math INTERFACE)
 
