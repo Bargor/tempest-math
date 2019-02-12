@@ -2,7 +2,7 @@
 # Author: Karol Kontny
 
 # Usage (because CMake makes this more complicated than it should): 
-# Windows: cmake ..\tempest-math -G "Visual Studio 15 2017 Win64" 
+# Windows: cmake ..\tempest-math -G "Visual Studio 15 2017 Win64" -DBUILD_TESTS=ON 
 
 cmake_minimum_required(VERSION 3.13)
 
@@ -14,7 +14,7 @@ set(VERSION_MINOR   0   CACHE STRING "Project minor version number.")
 set(VERSION_PATCH   1   CACHE STRING "Project patch version number.")
 
 #Get build number
-execute_process(COMMAND git -C ${CMAKE_SOURCE_DIR} rev-parse --short HEAD OUTPUT_VARIABLE VERSION_REVISION)
+execute_process(COMMAND git -C ${CMAKE_CURRENT_SOURCE_DIR} rev-parse --short HEAD OUTPUT_VARIABLE VERSION_REVISION)
 
 message(${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}:${VERSION_REVISION})
 
