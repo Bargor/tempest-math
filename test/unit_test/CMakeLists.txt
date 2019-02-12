@@ -19,7 +19,7 @@ set(TEST_SRCS ${TEST_RUNNER} ${TEST_CODE})
 source_group("Tests" FILES ${TEST_SRCS})
 
 add_executable (math_test ${TEST_SRCS})
-add_test(NAME unit_test COMMAND math_test)
+add_test(NAME tst.unit_test COMMAND math_test)
 
 target_compile_definitions(math_test PUBLIC "$<$<CONFIG:DEBUG>:${DEBUG_COMPILE_DEFINITIONS}>")
 target_compile_definitions(math_test PUBLIC "$<$<CONFIG:RELEASE>:${RELEASE_COMPILE_DEFINITIONS}>")
