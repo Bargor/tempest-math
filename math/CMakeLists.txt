@@ -1,5 +1,3 @@
-include(../GatherSources.cmake)
-
 add_library(math INTERFACE)
 
 add_library(tst::math ALIAS math)
@@ -20,7 +18,5 @@ target_sources(math
 		compare.h
 		compare.inl
 )
-
-source_group("math" FILES ${TEMPEST_CODE})
 
 target_link_libraries(math INTERFACE)

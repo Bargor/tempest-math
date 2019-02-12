@@ -24,7 +24,7 @@ before_build:
     - cmd: cmake -G"%GENERATOR%" .
 
 build:
-  project: $(APPVEYOR_BUILD_FOLDER)\Project.sln
+  project: $(APPVEYOR_BUILD_FOLDER)\Tempest-math.sln
 
 test_script:
   - '%APPVEYOR_BUILD_FOLDER%\bin\exe\%CONFIGURATION%\math_test.exe'
