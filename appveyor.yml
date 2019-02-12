@@ -21,7 +21,7 @@ install:
 
 before_build:
     - cmd: echo %GENERATOR%
-    - cmd: cmake -G"%GENERATOR%" .
+    - cmd: cmake -G"%GENERATOR%" . -DBUILD_TESTS=ON
 
 build:
   project: $(APPVEYOR_BUILD_FOLDER)\Tempest-math.sln
